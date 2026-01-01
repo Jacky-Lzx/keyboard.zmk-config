@@ -54,9 +54,31 @@ Based on the document, the container should be restarted
 ### Compile
 
 ```fish
-west build -d build/eyelash_sofle_dongle -b nice_nano_v2 -S studio-rpc-usb-uart -- -DSHIELD="eyelash_sofle_central_dongle dongle_display" -DZMK_CONFIG="/workspaces/zmk-config" -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/zmk-dongle-display" -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_STUDIO_LOCKING=n
-west build -d build/eyelash_sofle_left -b nice_nano_v2 -- -DSHIELD="eyelash_sofle_peripheral_left nice_view" -DZMK_CONFIG="/workspaces/zmk-config"
-west build -d build/eyelash_sofle_right -b nice_nano_v2 -- -DSHIELD="eyelash_sofle_peripheral_right nice_view" -DZMK_CONFIG="/workspaces/zmk-config"
+west build -d build/eyelash_sofle_dongle \
+  -b nice_nano_v2 \
+  -S studio-rpc-usb-uart \
+  -- \
+  -DSHIELD="eyelash_sofle_central_dongle dongle_display" \
+  -DZMK_CONFIG="/workspaces/zmk-config/config" \
+  -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/zmk-dongle-display;/workspaces/zmk-config" \
+  -DCONFIG_ZMK_STUDIO=y \
+  -DCONFIG_ZMK_STUDIO_LOCKING=n
+
+west build \
+  -d build/eyelash_sofle_left \
+  -b nice_nano_v2 \
+  -- \
+  -DSHIELD="eyelash_sofle_peripheral_left nice_view" \
+  -DZMK_CONFIG="/workspaces/zmk-config/config" \
+  -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/zmk-dongle-display;/workspaces/zmk-config"
+
+west build \
+  -d build/eyelash_sofle_right \
+  -b nice_nano_v2 \
+  -- \
+  -DSHIELD="eyelash_sofle_peripheral_right nice_view" \
+  -DZMK_CONFIG="/workspaces/zmk-config/config" \
+  -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/zmk-dongle-display;/workspaces/zmk-config"
 ```
 
 > [!TIP] Build times can be significantly reduced after the initial build by omitting all build arguments except the
