@@ -5,11 +5,12 @@ url: https://github.com/a741725193/zmk-sofle-dongle
 type: shield
 requires: [pro_micro]
 features:
-  - keys
-  - display
+    - keys
+    - display
 outputs:
-  - usb
-  - ble
+    - usb
+    - ble
 siblings:
-  - eyelash_sofle_left
-  - eyelash_sofle_right
+    - eyelash_sofle_left
+    - eyelash_sofle_right
+
