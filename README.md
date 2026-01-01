@@ -4,16 +4,21 @@
 
 Use container with podman
 
-### Create Podman Volumes
+Reference: [official tutorial](https://v0-3-branch.zmk.dev/docs/development/local-toolchain/setup/container?container=podman)
 
-Reference: [link](https://v0-3-branch.zmk.dev/docs/development/local-toolchain/setup/container?container=podman)
+### Clone Repository
 
-```fish
-set -g ZMK_CONFIG /Users/zexili/Documents/Github/keyboard.zmk-config
-podman volume create --driver local -o o=bind -o type=none -o device="$ZMK_CONFIG" zmk-config
-```
+Below repositories should be cloned
 
-Since no external modules used so far, we do not need to set the `zmk-module` folder
+- zmk: <https://github.com/zmkfirmware/zmk.git>
+- this repo: <https://github.com/Jacky-Lzx/keyboard.zmk-config>
+- zmk-dongle-display: <https://github.com/englmaxi/zmk-dongle-display>
+
+File structure:
+
+- `/Users/zexili/Documents/Github/keyboard.zmk`
+- `/Users/zexili/Documents/Github/keyboard.zmk-config`
+- `/Users/zexili/Documents/Github/keyboard.zmk-modules/zmk-dongle-display`
 
 ### Initialize Container
 
@@ -47,14 +52,6 @@ podman run -it \
 Based on the document, the container should be restarted
 
 ### Compile
-
-Test config:
-
-```fish
-west build -d build/left -b nice_nano -- -DSHIELD=kyria_left
-```
-
-It can run successfully
 
 ```fish
 west build -d build/eyelash_sofle_dongle -b nice_nano_v2 -S studio-rpc-usb-uart -- -DSHIELD="eyelash_sofle_central_dongle dongle_display" -DZMK_CONFIG="/workspaces/zmk-config" -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/zmk-dongle-display" -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_STUDIO_LOCKING=n
