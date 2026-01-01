@@ -1,5 +1,9 @@
 # My Personal ZMK Keyboard Configs
 
+This repository contains my personal ZMK configuration files for the eyelash_sofle keyboard together with a dongle
+
+The repository is initialized from [a741725193/zmk-sofle-dongle](https://github.com/a741725193/zmk-sofle-dongle)
+
 ## Build (Locally)
 
 Use container with podman
