@@ -64,23 +64,23 @@ west build \
     -- \
     -DSHIELD="eyelash_sofle_central_dongle dongle_display" \
     -DZMK_CONFIG="/workspaces/zmk-config/config" \
-    -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/zmk-dongle-display;/workspaces/zmk-config"
+    -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/zmk-dongle-display;/workspaces/zmk-modules/keyboard.nice_view_module;/workspaces/zmk-config"
 
 west build \
     -d build/eyelash_sofle_left \
     -b nice_nano_v2 \
     -- \
-    -DSHIELD="eyelash_sofle_peripheral_left nice_view" \
+    -DSHIELD="eyelash_sofle_peripheral_left nice_view_adapter nice_view_custom" \
     -DZMK_CONFIG="/workspaces/zmk-config/config" \
-    -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/zmk-dongle-display;/workspaces/zmk-config"
+    -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/zmk-dongle-display;/workspaces/zmk-modules/keyboard.nice_view_module;/workspaces/zmk-config"
 
 west build \
     -d build/eyelash_sofle_right \
     -b nice_nano_v2 \
     -- \
-    -DSHIELD="eyelash_sofle_peripheral_right nice_view" \
+    -DSHIELD="eyelash_sofle_peripheral_right nice_view_adapter nice_view_custom" \
     -DZMK_CONFIG="/workspaces/zmk-config/config" \
-    -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/zmk-dongle-display;/workspaces/zmk-config"
+    -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/zmk-dongle-display;/workspaces/zmk-modules/keyboard.nice_view_module;/workspaces/zmk-config"
 ```
 
 > [!TIP] Build times can be significantly reduced after the initial build by omitting all build arguments except the
