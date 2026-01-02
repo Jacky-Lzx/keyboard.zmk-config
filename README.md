@@ -42,13 +42,13 @@ set -g ZMK_HOME /Users/zexili/Documents/Github/keyboard.zmk
 set -g ZMK_CONFIG /Users/zexili/Documents/Github/keyboard.zmk-config
 set -g ZMK_MODULES /Users/zexili/Documents/Github/keyboard.zmk-modules
 podman run -it \
-  --security-opt label=disable \
-  --workdir /workspaces/zmk \
-  -v $ZMK_HOME:/workspaces/zmk \
-  -v $ZMK_CONFIG:/workspaces/zmk-config \
-  -v $ZMK_MODULES:/workspaces/zmk-modules \
-  -p 3000:3000 \
-  zmk-v0.3 /bin/bash
+    --security-opt label=disable \
+    --workdir /workspaces/zmk \
+    -v $ZMK_HOME:/workspaces/zmk \
+    -v $ZMK_CONFIG:/workspaces/zmk-config \
+    -v $ZMK_MODULES:/workspaces/zmk-modules \
+    -p 3000:3000 \
+    zmk-v0.3 /bin/bash
 ```
 
 ### Restart
@@ -58,31 +58,29 @@ Based on the document, the container should be restarted
 ### Compile
 
 ```fish
-west build -d build/eyelash_sofle_dongle \
-  -b nice_nano_v2 \
-  -S studio-rpc-usb-uart \
-  -- \
-  -DSHIELD="eyelash_sofle_central_dongle dongle_display" \
-  -DZMK_CONFIG="/workspaces/zmk-config/config" \
-  -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/zmk-dongle-display;/workspaces/zmk-config" \
-  -DCONFIG_ZMK_STUDIO=y \
-  -DCONFIG_ZMK_STUDIO_LOCKING=n
+west build \
+    -d build/eyelash_sofle_dongle \
+    -b nice_nano_v2 \
+    -- \
+    -DSHIELD="eyelash_sofle_central_dongle dongle_display" \
+    -DZMK_CONFIG="/workspaces/zmk-config/config" \
+    -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/zmk-dongle-display;/workspaces/zmk-config"
 
 west build \
-  -d build/eyelash_sofle_left \
-  -b nice_nano_v2 \
-  -- \
-  -DSHIELD="eyelash_sofle_peripheral_left nice_view" \
-  -DZMK_CONFIG="/workspaces/zmk-config/config" \
-  -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/zmk-dongle-display;/workspaces/zmk-config"
+    -d build/eyelash_sofle_left \
+    -b nice_nano_v2 \
+    -- \
+    -DSHIELD="eyelash_sofle_peripheral_left nice_view" \
+    -DZMK_CONFIG="/workspaces/zmk-config/config" \
+    -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/zmk-dongle-display;/workspaces/zmk-config"
 
 west build \
-  -d build/eyelash_sofle_right \
-  -b nice_nano_v2 \
-  -- \
-  -DSHIELD="eyelash_sofle_peripheral_right nice_view" \
-  -DZMK_CONFIG="/workspaces/zmk-config/config" \
-  -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/zmk-dongle-display;/workspaces/zmk-config"
+    -d build/eyelash_sofle_right \
+    -b nice_nano_v2 \
+    -- \
+    -DSHIELD="eyelash_sofle_peripheral_right nice_view" \
+    -DZMK_CONFIG="/workspaces/zmk-config/config" \
+    -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/zmk-dongle-display;/workspaces/zmk-config"
 ```
 
 > [!TIP] Build times can be significantly reduced after the initial build by omitting all build arguments except the
