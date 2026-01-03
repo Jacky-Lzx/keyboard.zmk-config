@@ -17,12 +17,14 @@ Below repositories should be cloned
 - zmk: <https://github.com/zmkfirmware/zmk.git>
 - this repo: <https://github.com/Jacky-Lzx/keyboard.zmk-config>
 - zmk-dongle-display: <https://github.com/englmaxi/zmk-dongle-display>
+- keyboard.nice_view_module: <https://github.com/Jacky-Lzx/keyboard.nice_view_module>
 
 File structure:
 
 - `/Users/zexili/Documents/Github/keyboard.zmk`
 - `/Users/zexili/Documents/Github/keyboard.zmk-config`
 - `/Users/zexili/Documents/Github/keyboard.zmk-modules/zmk-dongle-display`
+- `/Users/zexili/Documents/Github/keyboard.zmk-modules/keyboard.nice_view_module`
 
 ### Initialize Container
 
