@@ -21,12 +21,14 @@ Below repositories should be cloned
 
 File structure:
 
-- `/Users/zexili/Documents/Github/keyboard.zmk`
-- `/Users/zexili/Documents/Github/keyboard.zmk-config`
-- `/Users/zexili/Documents/Github/keyboard.zmk-modules/zmk-dongle-display`
-- `/Users/zexili/Documents/Github/keyboard.zmk-modules/keyboard.nice_view_module`
+- `/Users/zexili/Documents/Github/keyboards/zmk`
+- `/Users/zexili/Documents/Github/keyboards/zmk-config`
+- `/Users/zexili/Documents/Github/keyboards/zmk-modules/zmk-dongle-display`
+- `/Users/zexili/Documents/Github/keyboards/zmk-modules/keyboard.nice_view_module`
 
 ### Initialize Container
+
+Switch the zmk repo to `v0.3_branch`.
 
 Directory: the `zmk` folder
 
@@ -40,9 +42,9 @@ running of it.
 ### Run Container
 
 ```fish
-set -g ZMK_HOME /Users/zexili/Documents/Github/keyboard.zmk
-set -g ZMK_CONFIG /Users/zexili/Documents/Github/keyboard.zmk-config
-set -g ZMK_MODULES /Users/zexili/Documents/Github/keyboard.zmk-modules
+set -g ZMK_HOME /Users/zexili/Documents/Github/keyboards/zmk
+set -g ZMK_CONFIG /Users/zexili/Documents/Github/keyboards/zmk-config
+set -g ZMK_MODULES /Users/zexili/Documents/Github/keyboards/zmk-modules
 podman run -it \
     --security-opt label=disable \
     --workdir /workspaces/zmk \
@@ -56,6 +58,7 @@ podman run -it \
 ### Restart
 
 Based on the document, the container should be restarted
+However, based on my experience, this step is not required
 
 ### Compile
 
@@ -67,7 +70,9 @@ west build \
     -DSHIELD="eyelash_sofle_central_dongle dongle_display" \
     -DZMK_CONFIG="/workspaces/zmk-config/config" \
     -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/zmk-dongle-display;/workspaces/zmk-modules/keyboard.nice_view_module;/workspaces/zmk-config"
+```
 
+```fish
 west build \
     -d build/eyelash_sofle_left \
     -b nice_nano_v2 \
@@ -75,7 +80,9 @@ west build \
     -DSHIELD="eyelash_sofle_peripheral_left nice_view_adapter nice_view_custom" \
     -DZMK_CONFIG="/workspaces/zmk-config/config" \
     -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/zmk-dongle-display;/workspaces/zmk-modules/keyboard.nice_view_module;/workspaces/zmk-config"
+```
 
+```fish
 west build \
     -d build/eyelash_sofle_right \
     -b nice_nano_v2 \
@@ -85,9 +92,11 @@ west build \
     -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/zmk-dongle-display;/workspaces/zmk-modules/keyboard.nice_view_module;/workspaces/zmk-config"
 ```
 
-> [!TIP] Build times can be significantly reduced after the initial build by omitting all build arguments except the
-> build directory, e.g. `west build -d build/left`. The additional options and intermediate build outputs from your
-> initial build are cached and reused for unchanged files.
+> [!TIP]
+>
+> Build times can be significantly reduced after the initial build by omitting all build arguments except the build
+> directory, e.g. `west build -d build/left`. The additional options and intermediate build outputs from your initial
+> build are cached and reused for unchanged files.
 
 ## 键盘说明文件中的部分内容
 
@@ -100,7 +109,7 @@ west build \
 ### 硬件介绍
 
 - sofle无线系列键盘搭载nrf52840 MCU
-- 搭载2000mah锂电池(505060)
+- 搭载2000mAh锂电池(505060)
 - 电池接口为PH2.0插口，用户如果外购电池，需要注意插头正负极。
 - 绿色指示灯是充电指示功能，常亮是充电中，闪烁是电池未连接或者电源开关没有打开，熄灭表示充电完成。正常使用不需要频繁关闭电源开关，只有键盘预计半年以上不会使用时才需要关闭电源，避免锂电池损坏。锂电池有保护板，充满后会自动停止充电。键盘可以使用手机充电头和手机充电线进行充电。
 - 蓝色指示灯表示主控芯片工作状态。呼吸状态表示芯片处于BootLoader状态且USB已经连接电脑。快速闪烁表示芯片处于BootLoader状态，但未能和电脑建立连接。主控芯片正常启动后运行ZMK固件时应为熄灭状态。
